@@ -1,0 +1,50 @@
+CREATE DATABASE pet_clinic_jdbc;
+USE pet_clinic_jdbc;
+
+CREATE TABLE owner_table (
+    id INT NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    gender VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    state VARCHAR(255) NOT NULL,
+    mobile_number VARCHAR(10) NOT NULL UNIQUE,
+    email_id VARCHAR(255) NOT NULL UNIQUE,
+    pet_id INT NOT NULL,
+    pet_name VARCHAR(255) NOT NULL,
+    pet_date_of_birth DATE NOT NULL,
+    pet_gender VARCHAR(255) NOT NULL,
+    pet_type VARCHAR(255) NOT NULL 
+);
+
+SELECT * FROM owner_table;
+
+INSERT INTO owner_table (id, first_name, last_name, gender, city, state, mobile_number, email_id, pet_id, pet_name, pet_date_of_birth, pet_gender, pet_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+SELECT id, first_name, last_name, gender, city, state, mobile_number, email_id, pet_id, pet_name, pet_date_of_birth, pet_gender, pet_type FROM owner_table WHERE id = ?;
+UPDATE owner_table SET pet_name = ?, pet_date_of_birth = ?, pet_gender = ?, pet_type = ? WHERE id = ?;
+DELETE FROM owner_table WHERE id = ?;
+
+CREATE PROCEDURE save_owner(IN ownerId INT, IN ownerFirstName VARCHAR(255), IN ownerLastName VARCHAR(255), IN ownerGender VARCHAR(255), IN ownerCity VARCHAR(255), IN ownerState  VARCHAR(255), IN ownerMobileNumber VARCHAR(10), IN ownerEmailId VARCHAR(255), IN petId INT, IN petName VARCHAR(255), IN petDateOfBirth VARCHAR(255), IN petGender VARCHAR(255), IN petType VARCHAR(255))    
+BEGIN    
+INSERT INTO owner_table (id, first_name, last_name, gender, city, state, mobile_number, email_id, pet_id, pet_name, pet_date_of_birth, pet_gender, pet_type) VALUES (ownerId, ownerFirstName, ownerLastName, ownerGender, ownerCity, ownerState, ownerMobileNumber, ownerEmailId, petId, petName, petDateOfBirth, petGender, petType);    
+END
+
+CREATE PROCEDURE find_owner(IN ownerId INT)    
+BEGIN    
+SELECT * FROM owner_table WHERE id = ownerId;    
+END
+
+CREATE PROCEDURE update_pet(IN ownerId INT, IN petName VARCHAR(255))    
+BEGIN    
+UPDATE owner_table SET pet_name = petName WHERE id = ownerId;    
+END
+
+CREATE PROCEDURE delete_owner(IN ownerId INT)    
+BEGIN    
+DELETE FROM owner_table WHERE id = ownerId;    
+END
+
+CREATE PROCEDURE find_owners()    
+BEGIN    
+SELECT * FROM owner_table;    
+END

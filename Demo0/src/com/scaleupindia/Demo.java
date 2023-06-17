@@ -25,7 +25,7 @@ public class Demo {
 		ownerService = new OwnerServiceImpl();
 		try (Scanner scanner = new Scanner(System.in)) {
 			do {
-				System.out.println("Welcome to Pet Clinic");
+				System.out.println("Welcome to Petistaan");
 				int menuOption = InputUtil.acceptMenuOption(scanner);
 				switch (menuOption) {
 				case 1:

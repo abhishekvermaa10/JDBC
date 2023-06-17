@@ -1,7 +1,1 @@
 Demo0 - CRUD using List
-Demo1 - Establish connection with Database
-Demo2 - CRUD using Statement
-Demo3 - CRUD using Prepared Statement
-Demo4 - Try-with-resources
-Demo5 - CRUD using Callable Statement
-Capstone Project

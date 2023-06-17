@@ -28,8 +28,9 @@ public class OwnerServiceImpl implements OwnerService {
 		Optional<OwnerDTO> existingOwnerDTO = ownerRepository.findOwner(ownerDTO.getId());
 		if (existingOwnerDTO.isPresent()) {
 			throw new DuplicateOwnerException(OWNER_ALREADY_EXISTS + ownerDTO.getId());
+		} else {
+			ownerRepository.saveOwner(ownerDTO);
 		}
-		ownerRepository.saveOwner(ownerDTO);
 	}
 
 	@Override
@@ -37,8 +38,9 @@ public class OwnerServiceImpl implements OwnerService {
 		Optional<OwnerDTO> ownerDTO = ownerRepository.findOwner(ownerId);
 		if (ownerDTO.isEmpty()) {
 			throw new OwnerNotFoundException(OWNER_NOT_FOUND + ownerId);
+		} else {
+			return ownerDTO.get();
 		}
-		return ownerDTO.get();
 	}
 
 	@Override
@@ -46,8 +48,9 @@ public class OwnerServiceImpl implements OwnerService {
 		Optional<OwnerDTO> ownerDTO = ownerRepository.findOwner(ownerId);
 		if (ownerDTO.isEmpty()) {
 			throw new OwnerNotFoundException(OWNER_NOT_FOUND + ownerId);
+		} else {
+			ownerRepository.updatePetDetails(ownerId, petName);
 		}
-		ownerRepository.updatePetDetails(ownerId, petName);
 	}
 
 	@Override
@@ -55,8 +58,9 @@ public class OwnerServiceImpl implements OwnerService {
 		Optional<OwnerDTO> ownerDTO = ownerRepository.findOwner(ownerId);
 		if (ownerDTO.isEmpty()) {
 			throw new OwnerNotFoundException(OWNER_NOT_FOUND + ownerId);
+		} else {
+			ownerRepository.deleteOwner(ownerId);
 		}
-		ownerRepository.deleteOwner(ownerId);
 	}
 
 	@Override

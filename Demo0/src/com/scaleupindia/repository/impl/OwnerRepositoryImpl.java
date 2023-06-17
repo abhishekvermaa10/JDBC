@@ -28,10 +28,10 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 		ownerDTO.setState("Chandigarh");
 		ownerDTO.setMobileNumber("9876543210");
 		ownerDTO.setEmailId("abhishekvermaa10@gmail.com");
-		ownerDTO.setId(1);
+		ownerDTO.setPetId(1);
 		ownerDTO.setPetName("Mitthu");
 		ownerDTO.setPetBirthDate(InputUtil.convertStringToDate("07-03-2022"));
-		ownerDTO.setGender(Gender.M);
+		ownerDTO.setPetGender(Gender.M);
 		ownerDTO.setPetType(PetType.BIRD);
 		ownerDTOList.add(ownerDTO);
 	}
@@ -48,14 +48,12 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 
 	@Override
 	public void updatePetDetails(int ownerId, String petName) {
-		ownerDTOList.stream().filter(ownerDTO -> ownerDTO.getId() == ownerId).findFirst().ifPresent(ownerDTO -> {
-			ownerDTO.setPetName(petName);
-		});
+		ownerDTOList.stream().filter(owner -> owner.getId() == ownerId).findFirst().ifPresent(owner -> owner.setPetName(petName));
 	}
 
 	@Override
 	public void deleteOwner(int ownerId) {
-		ownerDTOList.removeIf(ownerDTO -> ownerDTO.getId() == ownerId);
+		ownerDTOList.removeIf(owner -> owner.getId() == ownerId);
 	}
 
 	@Override

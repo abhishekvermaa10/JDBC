@@ -1,5 +1,6 @@
 package com.scaleupindia.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -66,5 +67,10 @@ public class OwnerServiceImpl implements OwnerService {
 	@Override
 	public List<OwnerDTO> findAllOwners() {
 		return ownerRepository.findAllOwners();
+	}
+	
+	@Override
+	public List<OwnerDTO> findOwner(String ownerEmailId, LocalDate petBirthDate) {
+		return ownerRepository.findOwner(ownerEmailId, petBirthDate);
 	}
 }

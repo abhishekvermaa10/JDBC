@@ -1,5 +1,6 @@
 package com.scaleupindia.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.scaleupindia.dto.OwnerDTO;
@@ -18,4 +19,6 @@ public interface OwnerRepository {
 	void deleteOwner(int ownerId);
 
 	List<OwnerDTO> findAllOwners();
+	
+	List<OwnerDTO> findOwner(String ownerEmailId, LocalDate petBirthDate);
 }

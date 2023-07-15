@@ -1,6 +1,7 @@
 package com.scaleupindia;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -53,6 +54,12 @@ public class Demo {
 				case 5:
 					List<OwnerDTO> ownerDTOList = ownerService.findAllOwners();
 					System.out.println("There are " + ownerDTOList.size() + " owners.");
+					ownerDTOList.forEach(System.out::println);
+					break;
+				case 6:
+					String ownerEmailId = InputUtil.acceptOwnerEmailIdToOperate(scanner);
+					LocalDate petBirthDate = InputUtil.acceptPetBirthDateToOperate(scanner);
+					ownerDTOList = ownerService.findOwner(ownerEmailId, petBirthDate);
 					ownerDTOList.forEach(System.out::println);
 					break;
 				default:

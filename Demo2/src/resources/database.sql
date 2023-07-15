@@ -22,4 +22,4 @@ INSERT INTO owner_table (id, first_name, last_name, gender, city, state, mobile_
 SELECT * FROM owner_table WHERE id = ?;
 UPDATE owner_table SET pet_name = ? WHERE id = ?;
 DELETE FROM owner_table WHERE id = ?;
-SELECT id, city FROM owner_table;
+SELECT * FROM owner_table WHERE email_id = ? AND pet_date_of_birth = ?

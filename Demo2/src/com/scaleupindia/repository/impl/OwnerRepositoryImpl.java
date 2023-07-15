@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -74,7 +75,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 			connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
 			statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(sql);
-			while (resultSet.next()) {
+			while(resultSet.next()) {
 				owner = MapperUtil.convertOwnerResultSetToDto(resultSet);
 			}
 		} catch (ClassNotFoundException | SQLException exception) {
@@ -101,7 +102,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 
 	@Override
 	public void updatePetDetails(int ownerId, String petName) {
-		String sql = "UPDATE owner_table SET pet_name = '" + petName + "' WHERE id = " + ownerId;
+		String sql = "UPDATE owner_table SET pet_name = '" + petName +"' WHERE id = " + ownerId;
 		Connection connection = null;
 		Statement statement = null;
 		try {
@@ -173,7 +174,45 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 			connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
 			statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(sql);
-			while (resultSet.next()) {
+			while(resultSet.next()) {
+				owner = MapperUtil.convertOwnerResultSetToDto(resultSet);
+				ownerList.add(owner);
+			}
+		} catch (ClassNotFoundException | SQLException exception) {
+			exception.printStackTrace();
+			throw new InternalServiceException(exception.getMessage());
+		} finally {
+			try {
+				if (Objects.nonNull(statement)) {
+					statement.close();
+				}
+			} catch (SQLException exception) {
+				exception.printStackTrace();
+			}
+			try {
+				if (Objects.nonNull(connection)) {
+					connection.close();
+				}
+			} catch (SQLException exception) {
+				exception.printStackTrace();
+			}
+		}
+		return ownerList;
+	}
+	
+	@Override
+	public List<OwnerDTO> findOwner(String ownerEmailId, LocalDate petBirthDate) {
+		String sql = "SELECT * FROM owner_table WHERE email_id = '"+ownerEmailId+"' AND pet_date_of_birth = '"+ petBirthDate+"'";
+		List<OwnerDTO> ownerList = new ArrayList<>();
+		OwnerDTO owner = null;
+		Connection connection = null;
+		Statement statement = null;
+		try {
+			Class.forName(DATABASE_DRIVER);
+			connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+			statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(sql);
+			while(resultSet.next()) {
 				owner = MapperUtil.convertOwnerResultSetToDto(resultSet);
 				ownerList.add(owner);
 			}

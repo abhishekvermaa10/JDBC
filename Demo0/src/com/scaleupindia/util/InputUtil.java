@@ -21,7 +21,7 @@ public class InputUtil {
 	public static int acceptMenuOption(Scanner scanner) {
 		System.out.println("Press 1 to add new owner.");
 		System.out.println("Press 2 to fetch owner details.");
-		System.out.println("Press 3 to updated pet details of owner.");
+		System.out.println("Press 3 to update pet details of owner.");
 		System.out.println("Press 4 to delete owner details.");
 		System.out.println("Press 5 to fetch all owners.");
 		int menuOption = scanner.nextInt();

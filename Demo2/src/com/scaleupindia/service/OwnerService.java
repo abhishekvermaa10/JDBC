@@ -1,5 +1,6 @@
 package com.scaleupindia.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.scaleupindia.dto.OwnerDTO;
@@ -20,4 +21,6 @@ public interface OwnerService {
 	void deleteOwner(int ownerId) throws OwnerNotFoundException;
 
 	List<OwnerDTO> findAllOwners();
+	
+	List<OwnerDTO> findOwner(String ownerEmailId, LocalDate petBirthDate);
 }

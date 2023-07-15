@@ -21,11 +21,12 @@ public class InputUtil {
 	public static int acceptMenuOption(Scanner scanner) {
 		System.out.println("Press 1 to add new owner.");
 		System.out.println("Press 2 to fetch owner details.");
-		System.out.println("Press 3 to updated pet details of owner.");
+		System.out.println("Press 3 to update pet details of owner.");
 		System.out.println("Press 4 to delete owner details.");
 		System.out.println("Press 5 to fetch all owners.");
+		System.out.println("Press 6 to fetch owner details by owner email id and pet date of birth.");
 		int menuOption = scanner.nextInt();
-		if (menuOption == 1 || menuOption == 2 || menuOption == 3 || menuOption == 4 || menuOption == 5) {
+		if (menuOption == 1 || menuOption == 2 || menuOption == 3 || menuOption == 4 || menuOption == 5 || menuOption == 6) {
 			return menuOption;
 		} else {
 			return acceptMenuOption(scanner);
@@ -95,6 +96,17 @@ public class InputUtil {
 	public static int acceptOwnerIdToOperate(Scanner scanner) {
 		System.out.println("Enter id of owner:");
 		return scanner.nextInt();
+	}
+	
+	public static String acceptOwnerEmailIdToOperate(Scanner scanner) {
+		System.out.println("Enter email id of owner:");
+		scanner.nextLine();
+		return scanner.nextLine();
+	}
+	
+	public static LocalDate acceptPetBirthDateToOperate(Scanner scanner) {
+		System.out.println("Enter date of birth of pet (dd-MM-yyyy):");
+		return convertStringToDate(scanner.next());
 	}
 
 	public static LocalDate convertStringToDate(String stringDate) {

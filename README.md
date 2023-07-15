@@ -9,6 +9,7 @@
   <ol style="text-align: left;">
     <li>Demo0 - CRUD using List</li>
     <li>Demo1 - Establish connection with Database</li>
+    <li>Demo2 - CRUD using Statement</li>
   </ol>
 
   <h3 style="text-align: left;">Pre-Requisite</h3>

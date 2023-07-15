@@ -18,7 +18,7 @@ CREATE TABLE owner_table (
 );
 
 SELECT * FROM owner_table;
-INSERT INTO owner_table (id, first_name, last_name, gender, city, state, mobile_number, email_id, pet_id, pet_name, pet_date_of_birth, pet_gender, pet_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO owner_table (id, first_name, last_name, gender, city, state, mobile_number, email_id, pet_id, pet_name, pet_date_of_birth, pet_gender, pet_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 SELECT * FROM owner_table WHERE id = ?;
 UPDATE owner_table SET pet_name = ? WHERE id = ?;
 DELETE FROM owner_table WHERE id = ?;

@@ -11,6 +11,7 @@
     <li>Demo1 - Establish connection with Database</li>
     <li>Demo2 - CRUD using Statement</li>
 	<li>Demo3 - CRUD using PreparedStatement</li>
+	<li>Demo4 - Call using CallableStatement</li>
   </ol>
 
   <h3 style="text-align: left;">Pre-Requisite</h3>

@@ -12,6 +12,7 @@
     <li>Demo2 - CRUD using Statement</li>
 	<li>Demo3 - CRUD using PreparedStatement</li>
 	<li>Demo4 - Call using CallableStatement</li>
+	<li>Demo5 - Transactions</li>
   </ol>
 
   <h3 style="text-align: left;">Pre-Requisite</h3>

@@ -20,7 +20,7 @@ public class OwnerServiceImpl implements OwnerService {
 	private OwnerRepository ownerRepository;
 	private static final String OWNER_ALREADY_EXISTS = "owner.already.exists";
 	private static final String OWNER_NOT_FOUND = "owner.not.found";
-	private static final PropertiesConfig propertiesConfig = PropertiesConfig.getInstance();
+	private static final PropertiesConfig PROPERTES_CONFIG = PropertiesConfig.getInstance();
 
 	public OwnerServiceImpl() {
 		this.ownerRepository = new OwnerRepositoryImpl();
@@ -30,7 +30,7 @@ public class OwnerServiceImpl implements OwnerService {
 	public void saveOwner(OwnerDTO ownerDTO) throws DuplicateOwnerException {
 		OwnerDTO existingOwner = ownerRepository.findOwner(ownerDTO.getId());
 		if (Objects.nonNull(existingOwner)) {
-			throw new DuplicateOwnerException(String.format(propertiesConfig.getProperty(OWNER_ALREADY_EXISTS), ownerDTO.getId()));
+			throw new DuplicateOwnerException(String.format(PROPERTES_CONFIG.getProperty(OWNER_ALREADY_EXISTS), ownerDTO.getId()));
 		} else {
 			ownerRepository.saveOwner(ownerDTO);
 		}
@@ -40,7 +40,7 @@ public class OwnerServiceImpl implements OwnerService {
 	public OwnerDTO findOwner(int ownerId) throws OwnerNotFoundException {
 		OwnerDTO owner = ownerRepository.findOwner(ownerId);
 		if (Objects.isNull(owner)) {
-			throw new OwnerNotFoundException(String.format(propertiesConfig.getProperty(OWNER_NOT_FOUND), ownerId));
+			throw new OwnerNotFoundException(String.format(PROPERTES_CONFIG.getProperty(OWNER_NOT_FOUND), ownerId));
 		} else {
 			return owner;
 		}
@@ -50,7 +50,7 @@ public class OwnerServiceImpl implements OwnerService {
 	public void updatePetDetails(int ownerId, String petName) throws OwnerNotFoundException {
 		OwnerDTO owner = ownerRepository.findOwner(ownerId);
 		if (Objects.isNull(owner)) {
-			throw new OwnerNotFoundException(String.format(propertiesConfig.getProperty(OWNER_NOT_FOUND), ownerId));
+			throw new OwnerNotFoundException(String.format(PROPERTES_CONFIG.getProperty(OWNER_NOT_FOUND), ownerId));
 		} else {
 			ownerRepository.updatePetDetails(ownerId, petName);
 		}
@@ -60,7 +60,7 @@ public class OwnerServiceImpl implements OwnerService {
 	public void deleteOwner(int ownerId) throws OwnerNotFoundException {
 		OwnerDTO owner = ownerRepository.findOwner(ownerId);
 		if (Objects.isNull(owner)) {
-			throw new OwnerNotFoundException(String.format(propertiesConfig.getProperty(OWNER_NOT_FOUND), ownerId));
+			throw new OwnerNotFoundException(String.format(PROPERTES_CONFIG.getProperty(OWNER_NOT_FOUND), ownerId));
 		} else {
 			ownerRepository.deleteOwner(ownerId);
 		}

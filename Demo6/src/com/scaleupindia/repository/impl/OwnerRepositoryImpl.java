@@ -23,7 +23,7 @@ import com.scaleupindia.util.MapperUtil;
  */
 public class OwnerRepositoryImpl implements OwnerRepository {
 	private static final String DATABASE_DRIVER = "database.driver";
-	private static final PropertiesConfig propertiesConfig = PropertiesConfig.getInstance();
+	private static final PropertiesConfig PROPERTIES_CONFIG = PropertiesConfig.getInstance();
 
 	@Override
 	public void saveOwner(OwnerDTO owner) {
@@ -34,7 +34,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""";
 		try (Connection connection = DatabaseConfig.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
-			Class.forName(propertiesConfig.getProperty(DATABASE_DRIVER));
+			Class.forName(PROPERTIES_CONFIG.getProperty(DATABASE_DRIVER));
 			preparedStatement.setInt(1, owner.getId());
 			preparedStatement.setString(2, owner.getFirstName());
 			preparedStatement.setString(3, owner.getLastName());
@@ -60,7 +60,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 		OwnerDTO owner = null;
 		try (Connection connection = DatabaseConfig.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
-			Class.forName(propertiesConfig.getProperty(DATABASE_DRIVER));
+			Class.forName(PROPERTIES_CONFIG.getProperty(DATABASE_DRIVER));
 			preparedStatement.setInt(1, ownerId);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
@@ -77,7 +77,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 		String sql = "UPDATE owner_table SET pet_name = ? WHERE id = ?";
 		try (Connection connection = DatabaseConfig.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
-			Class.forName(propertiesConfig.getProperty(DATABASE_DRIVER));
+			Class.forName(PROPERTIES_CONFIG.getProperty(DATABASE_DRIVER));
 			preparedStatement.setString(1, petName);
 			preparedStatement.setInt(2, ownerId);
 			preparedStatement.executeUpdate();
@@ -91,7 +91,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 		String sql = "DELETE FROM owner_table WHERE id = ?";
 		try (Connection connection = DatabaseConfig.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
-			Class.forName(propertiesConfig.getProperty(DATABASE_DRIVER));
+			Class.forName(PROPERTIES_CONFIG.getProperty(DATABASE_DRIVER));
 			preparedStatement.setInt(1, ownerId);
 			preparedStatement.executeUpdate();
 		} catch (ClassNotFoundException | SQLException exception) {
@@ -105,7 +105,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 		List<OwnerDTO> ownerList = new ArrayList<>();
 		try (Connection connection = DatabaseConfig.getConnection();
 				Statement statement = connection.createStatement();) {
-			Class.forName(propertiesConfig.getProperty(DATABASE_DRIVER));
+			Class.forName(PROPERTIES_CONFIG.getProperty(DATABASE_DRIVER));
 			ResultSet resultSet = statement.executeQuery(sql);
 			while (resultSet.next()) {
 				OwnerDTO owner = MapperUtil.convertOwnerResultSetToDto(resultSet);
@@ -123,7 +123,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 		List<OwnerDTO> ownerList = new ArrayList<>();
 		try (Connection connection = DatabaseConfig.getConnection();
 				CallableStatement callableStatement = connection.prepareCall(sql);) {
-			Class.forName(propertiesConfig.getProperty(DATABASE_DRIVER));
+			Class.forName(PROPERTIES_CONFIG.getProperty(DATABASE_DRIVER));
 			callableStatement.setString(1, petType);
 			ResultSet resultSet = callableStatement.executeQuery();
 			while (resultSet.next()) {

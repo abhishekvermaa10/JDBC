@@ -33,9 +33,9 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		try {
+			Class.forName(DATABASE_DRIVER);
 			connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
 			preparedStatement = connection.prepareStatement(sql);
-			Class.forName(DATABASE_DRIVER);
 			for (OwnerDTO owner : owners) {
 				preparedStatement.setInt(1, owner.getId());
 				preparedStatement.setString(2, owner.getFirstName());
@@ -83,10 +83,10 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		try {
+			Class.forName(DATABASE_DRIVER);
 			connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
 			connection.setAutoCommit(false);
 			preparedStatement = connection.prepareStatement(sql);
-			Class.forName(DATABASE_DRIVER);
 			for (OwnerDTO owner : owners) {
 				preparedStatement.setInt(1, owner.getId());
 				preparedStatement.setString(2, owner.getFirstName());
@@ -141,10 +141,10 @@ public class OwnerRepositoryImpl implements OwnerRepository {
 		PreparedStatement preparedStatement = null;
 		Savepoint savepoint = null;
 		try {
+			Class.forName(DATABASE_DRIVER);
 			connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
 			connection.setAutoCommit(false);
 			preparedStatement = connection.prepareStatement(sql);
-			Class.forName(DATABASE_DRIVER);
 			for (OwnerDTO owner : owners) {
 				preparedStatement.setInt(1, owner.getId());
 				preparedStatement.setString(2, owner.getFirstName());

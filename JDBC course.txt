@@ -1,7 +1,0 @@
-Demo0 - CRUD using List
-Demo1 - Establish connection with Database
-Demo2 - CRUD using Statement
-Demo3 - CRUD using PreparedStatement
-Demo4 - Call using CallableStatement
-Demo5 - Transactions
-Demo6 - Tips to enhance code
